@@ -1,7 +1,31 @@
 .vanilla-app {
-    max-width: ;
-    margin:
-    padding:
-    border:
-    border-radius:
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+}
+h1 {
+  color: rgb(112, 117, 122);
+  margin-bottom: 0;
+  display: block;
+  font-family: Roboto, arial, sans-serif;
+  font-size: 12px;
+  line-height: 28px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color: rgb (135, 135, 135);
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 19px;
+  text-align: left;
 }
