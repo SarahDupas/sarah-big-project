@@ -10,11 +10,25 @@
 </head>
 <div class="container">
     <div class="vanilla-app">
-    <h1>
+        <form id="search-form" class="nb-3">
+            <div class="row">
+                <div class="col-9">
+            <input 
+            type="search" 
+            placeholder="Type a city" 
+            class="form-control"
+            />
+            </div>
+            <div class="col-3">
+            <input type="submit" value="Search" class="btn-btn-primary" />
+        </div>
+        </div>
+        </form>
+    <h1 id="city">
         New York City
     </h1>
     <ul>
-        <li>
+        <li id="description">
         Precipitation: 80%
         </li>
         <li>
@@ -27,9 +41,12 @@
     </ul>
     <div class="row">
         <div class="col">
+            
             <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-            alt="partly cloudy" />
-         Monday   83 °F|°C
+            alt="partly cloudy"
+            id="icon" />
+            <strong  id="temperature"></strong>
+            <span classs="units">Monday 83<a href="#"> °F </a>|<a href="#">°C </a> </span>
 
     </div>
     <div class="col">
