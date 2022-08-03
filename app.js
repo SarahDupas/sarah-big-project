@@ -8,7 +8,9 @@ function displayTemperature(response) {
   let dataElement = document.querySelector("#data");
   let iconElement = document.querySelector("#icon");
 
-  temperatureElement.innerHTML = Math.round(reponse.data.main.temp);
+  celsiusTemperature = reponse.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
@@ -34,7 +36,27 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-search("New YOrk City");
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiuseTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit, handleSubmit");
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayfahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#fahrenheit-link");
+celsiusLink.addEventListener("click", displayfahrenheitTemperature);
+
+search("New YOrk City");

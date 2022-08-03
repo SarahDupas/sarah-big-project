@@ -5,6 +5,15 @@
   border: 1px solid #dadde1;
   border-radius: 10px;
 }
+
+.weather-app {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+}
+
 h1 {
   color: rgb(112, 117, 122);
   margin-bottom: 0;
@@ -29,3 +38,5 @@ li {
   line-height: 19px;
   text-align: left;
 }
+
+
