@@ -1,3 +1,27 @@
+function FormDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = "0${hours}";
+  }
+  let minutes = data.getMinutes();
+  if (minutes < 10) {
+    minutes = "0${minutes}";
+  }
+}
+let days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
+let day = days[date.getday()];
+return "${day} ${hours} : ${minutes}";
+
 function displayTemperature(response) {
   console.log(response.data);
   let temperatureElement = document.querySelector("temperature");
