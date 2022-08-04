@@ -22,6 +22,85 @@ let days = [
 let day = days[date.getday()];
 return "${day} ${hours} : ${minutes}";
 
+function displayWeather() {
+    let weatherElement= document.querySelector("#weather");
+
+    let weatherHTML= '<div class "row">';
+    weatherHTML= weatherHTML + 
+    '
+    <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+            alt="partly cloudy"
+            id="icon" />
+            <strong  id="temperature">
+            <span classs="units">Monday 83<a href="#" id="fahrenheit-link"> °F </a>|<a href="#" id="celsius-link">°C </a> </span>
+            </strong>
+
+    </div>
+    <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="partly cloudy" />
+       Tuesday 91 °F|°C
+    </div>
+
+    <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
+       Wednesday 77 °F|°C
+    </div>
+
+     <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
+       Thursday 87 °F|°C
+     </div>
+
+     <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
+       Friday 88 °F|°C
+     </div>
+
+      <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
+       Saturday 86 °F|°C
+      </div>
+    ';
+    let weatherHTML= '<div class "row">';
+    weatherHTML= weatherHTML +
+     '<img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+            alt="partly cloudy"
+            id="icon" />
+            <strong  id="temperature">
+            <span classs="units">Monday 83<a href="#" id="fahrenheit-link"> °F </a>|<a href="#" id="celsius-link">°C </a> </span>
+            </strong>
+
+    </div>
+    <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="partly cloudy" />
+       Tuesday 91 °F|°C
+    </div>
+
+    <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
+       Wednesday 77 °F|°C
+    </div>
+
+     <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
+       Thursday 87 °F|°C
+     </div>
+
+     <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
+       Friday 88 °F|°C
+     </div>
+
+      <div class="col">
+        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
+       Saturday 86 °F|°C
+      </div>
+      '; 
+    
+    weatherHTML=  weatherHTML + '</div>'; 
+    weatherElement.innerHTML= weatherHTML;
+}
+
 function displayTemperature(response) {
   console.log(response.data);
   let temperatureElement = document.querySelector("temperature");
@@ -84,3 +163,4 @@ let celsiusLink = document.querySelector("#fahrenheit-link");
 celsiusLink.addEventListener("click", displayfahrenheitTemperature);
 
 search("New YOrk City");
+displayWeather();
