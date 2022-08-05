@@ -2,40 +2,33 @@ function FormDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
   if (hours < 10) {
-    hours = "0${hours}";
+    hours = `0${hours}`;
   }
-  let minutes = data.getMinutes();
+  let minutes = date.getMinutes();
   if (minutes < 10) {
-    minutes = "0${minutes}";
+    minutes = `0${minutes}`;
   }
+
+  let days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  let day = days[date.getDay()];
+  return `${day} ${hours} : ${minutes}`;
 }
-let days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-
-let day = days[date.getday()];
-return "${day} ${hours} : ${minutes}";
-
 function displayWeather() {
-    let weatherElement= document.querySelector("#weather");
+  let weatherElement = document.querySelector("#weather");
 
-    let weatherHTML= '<div class "row">';
-    weatherHTML= weatherHTML + 
-    '
-    <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-            alt="partly cloudy"
-            id="icon" />
-            <strong  id="temperature">
-            <span classs="units">Monday 83<a href="#" id="fahrenheit-link"> °F </a>|<a href="#" id="celsius-link">°C </a> </span>
-            </strong>
-
-    </div>
+  let weatherHTML = '<div class="row">';
+  weatherHTML =
+    weatherHTML +
+    `
     <div class="col">
         <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="partly cloudy" />
        Tuesday 91 °F|°C
@@ -60,75 +53,39 @@ function displayWeather() {
         <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
        Saturday 86 °F|°C
       </div>
-    ';
-    let weatherHTML= '<div class "row">';
-    weatherHTML= weatherHTML +
-     '<img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-            alt="partly cloudy"
-            id="icon" />
-            <strong  id="temperature">
-            <span classs="units">Monday 83<a href="#" id="fahrenheit-link"> °F </a>|<a href="#" id="celsius-link">°C </a> </span>
-            </strong>
+    `;
 
-    </div>
-    <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="partly cloudy" />
-       Tuesday 91 °F|°C
-    </div>
-
-    <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
-       Wednesday 77 °F|°C
-    </div>
-
-     <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
-       Thursday 87 °F|°C
-     </div>
-
-     <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
-       Friday 88 °F|°C
-     </div>
-
-      <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
-       Saturday 86 °F|°C
-      </div>
-      '; 
-    
-    weatherHTML=  weatherHTML + '</div>'; 
-    weatherElement.innerHTML= weatherHTML;
+  weatherHTML = weatherHTML + "</div>";
+  weatherElement.innerHTML = weatherHTML;
 }
 
 function displayTemperature(response) {
   console.log(response.data);
-  let temperatureElement = document.querySelector("temperature");
-  let cityElement = document.querySelector("city");
-  let descriptionElement = document.querySelector("description");
+  let temperatureElement = document.querySelector("#temperature");
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
-  let dataElement = document.querySelector("#data");
+  let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
-  celsiusTemperature = reponse.data.main.temp;
+  celsiusTemperature = response.data.main.temp;
 
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
-  windElement.innerHTML = math.round(response.data.wind.speed);
-  dataElement.innerHTML = FormData(response.data.dt * 1000);
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  dateElement.innerHTML = FormDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
-    "http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png"
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function search(city) {
   let apiKey = "55ee7f54993429e7c2d9a48aa2b4d61b";
-  let city = "New York City";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
@@ -154,13 +111,12 @@ function displayCelsiuseTemperature(event) {
 let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
-form.addEventListener("submit, handleSubmit");
+form.addEventListener("submit", handleSubmit);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayfahrenheitTemperature);
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#fahrenheit-link");
-celsiusLink.addEventListener("click", displayfahrenheitTemperature);
+celsiusLink.addEventListener("click", displayCelsiuseTemperature);
 
-search("New YOrk City");
-displayWeather();
+search("New York City");
