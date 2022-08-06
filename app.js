@@ -1,72 +1,38 @@
 function FormDate(timestamp) {
-  let date = new Date(timestamp);
-  let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
   let days = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ];
 
   let day = days[date.getDay()];
   return `${day} ${hours} : ${minutes}`;
 }
+
 function displayWeather(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let weatherElement = document.querySelector("#weather");
 
-  let weatherHTML = '<div class="row">';
-  weatherHTML =
-    weatherHTML +
-    `
-    <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="partly cloudy" />
-       Tuesday 91 °F|°C
-    </div>
-
-    <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
-       Wednesday 77 °F|°C
-    </div>
-
-     <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
-       Thursday 87 °F|°C
-     </div>
-
-     <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
-       Friday 88 °F|°C
-     </div>
-
+  let weatherHTML = weatherElement.innerHTML;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 3) {
+      weatherHTML =
+        weatherHTML +
+        `
       <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
-       Saturday 86 °F|°C
-      </div>
-    `;
+          <img src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png" alt="partly cloudy" />
+         ${forecastDay.dt} ${Math.round(forecastDay.temp.day)} °F|°C
+      </div>`;
+    }
+  });
 
-  weatherHTML = weatherHTML + "</div>";
   weatherElement.innerHTML = weatherHTML;
-}
-
-function getWeather(coordinates) {
-  console.log(coordinates);
-  let apiKey = "55ee7f54993429e7c2d9a48aa2b4d61b";
-  let apiUrl =
-    "https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon={coordinates.lon}&appid=${apikey}$units=metric";
-  console.log(apiUrl);
-  axios.ger(apiUrl).then(displayWeather);
 }
 
 function displayTemperature(response) {
@@ -92,8 +58,6 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
-  getWeather(response.data.coord);
 }
 
 function search(city) {
