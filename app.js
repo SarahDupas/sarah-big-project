@@ -26,21 +26,21 @@ function displayWeather(response) {
   let weather = response.data.daily;
   let weatherElement = document.querySelector("#weather");
 
-  let weatherHTML = '<div class="row">';
+  let weatherHTML = weatherElement.innerHTML;
   weather.forEach(function (weatherDay, index) {
     if (index < 3) {
       weatherHTML =
         weatherHTML +
         `
       <div class="col">
-      <div class="weather">Monday</div>
           <img src="http://openweathermap.org/img/wn/${
-            forecastDay.weather[0].icon
+            weatherDay.weather[0].icon
           }@2x.png" alt="partly cloudy" />
-         ${forecastDay.dt} ${Math.round(forecastDay.temp.day)} °F|°C
+         ${weatherDay.dt} ${Math.round(weatherDay.temp.day)} °F|°C
       </div>`;
     }
   });
+
   weatherHTML = weatherHTML + "</div>";
   weatherElement.innerHTML = weatherHTML;
 }
