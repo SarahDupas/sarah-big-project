@@ -22,6 +22,14 @@ function FormDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours} : ${minutes}`;
 }
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+
+  return days[day];
+}
+
 function displayWeather(response) {
   let weather = response.data.daily;
   let weatherElement = document.querySelector("#weather");
@@ -36,7 +44,7 @@ function displayWeather(response) {
           <img src="http://openweathermap.org/img/wn/${
             weatherDay.weather[0].icon
           }@2x.png" alt="partly cloudy" />
-         ${weatherDay.dt} ${Math.round(weatherDay.temp.day)} °F|°C
+         ${formatDay(weatherDay.dt)} ${Math.round(weatherDay.temp.day)} °F|°C
       </div>`;
     }
   });
