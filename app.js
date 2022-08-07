@@ -1,29 +1,39 @@
 function FormDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
   let days = [
-    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
+    "Sunday",
   ];
 
   let day = days[date.getDay()];
   return `${day} ${hours} : ${minutes}`;
 }
-
 function displayWeather(response) {
-  let forecast = response.data.daily;
+  let weather = response.data.daily;
   let weatherElement = document.querySelector("#weather");
 
-  let weatherHTML = weatherElement.innerHTML;
-  forecast.forEach(function (forecastDay, index) {
+  let weatherHTML = '<div class="row">';
+  weather.forEach(function (weatherDay, index) {
     if (index < 3) {
       weatherHTML =
         weatherHTML +
         `
       <div class="col">
+      <div class="weather">Monday</div>
           <img src="http://openweathermap.org/img/wn/${
             forecastDay.weather[0].icon
           }@2x.png" alt="partly cloudy" />
@@ -31,7 +41,7 @@ function displayWeather(response) {
       </div>`;
     }
   });
-
+  weatherHTML = weatherHTML + "</div>";
   weatherElement.innerHTML = weatherHTML;
 }
 

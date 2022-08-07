@@ -1,96 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-   <link rel="stylesheet" href="./style.css" />
-   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-</head>
-<div class="container">
-    <div class="weather-app">
-    <div class="vanilla-app">
-        <form id="search-form" class="nb-3">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app">
+        <div class="vanilla-app">
+          <form id="search-form" class="nb-3">
             <div class="row">
-                <div class="col-9">
-            <input 
-            type="search" 
-            placeholder="Type a city" 
-            class="form-control"
-            id="city-input"
-            autocomplete="off"
-            />
+              <div class="col-9">
+                <input
+                  type="search"
+                  placeholder="Type a city"
+                  class="form-control"
+                  id="city-input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn-btn-primary w-100"
+                />
+              </div>
             </div>
-            <div class="col-3">
-            <input type="submit" value="Search" class="btn-btn-primary w-100" />
-        </div>
-        </div>
-        </form>
-    <h1 id="city">
-        New York City
-    </h1>
-    <ul>
-        <li id="description">
-        Precipitation: 80%
-        </li>
-        <li>
-            Humidity: 59<span id="humidity"></span>% </span>
-
-        </li>
-        <li>
-            Wind:6 <span id="wind"> km/hc</span>
-        </li>
-    </ul>
-    <div class="row">
-        <div class="col" id="weather">
-            
-            
-            <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-            alt="partly cloudy"
-            id="icon" />
-            <strong  id="temperature">83</strong>
+          </form>
+          <h1 id="city">New York City</h1>
+          <ul>
+            <li id="description">Precipitation: 80%</li>
+            <li>Humidity: 59<span id="humidity"></span>%</li>
+            <li>Wind:6 <span id="wind"> km/hc</span></li>
+          </ul>
+          <div id="weather" class="row"></div>
+          <div class="col">
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+              alt="partly cloudy"
+              id="icon"
+            />
+            <strong id="temperature">24</strong>
             <span id="date">Monday</span>
-            <span class="units"><a href="#" id="fahrenheit-link"> °F </a>|<a href="#" id="celsius-link">°C </a> </span>
-            
+            <span class="units"
+              ><a href="#" id="fahrenheit-link"> °F </a>|<a
+                href="#"
+                id="celsius-link"
+                >°C
+              </a>
+            </span>
+          </div>
 
-    </div>
-    <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="partly cloudy" />
-       Tuesday 91 °F|°C
-    </div>
-
-    <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
-       Wednesday 77 °F|°C
-    </div>
-
-     <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" alt="rain clouds" />
-       Thursday 87 °F|°C
-     </div>
-
-     <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
-       Friday 88 °F|°C
-     </div>
-
-      <div class="col">
-        <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="partly cloudy" />
-       Saturday 86 °F|°C
+          <small>
+            <a
+              href="https://github.com/SarahDupas/sarah-big-project"
+              target="_blank"
+            >
+              Open source by Sarah Dupas
+            </a>
+          </small>
+        </div>
       </div>
-    
-<body>
-
-<small>
-    <a href="https://github.com/SarahDupas/sarah-big-project" target="_blank" >
-    Open source by Sarah Dupas </a>
-</small>
-</div>
-</div>
     </div>
-<script src="app.js"></script>
-</body>
+    <script src="app.js"></script>
+  </body>
 </html>
